@@ -9,24 +9,24 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.fiap.hackaton.models.Reclamacao;
-import br.com.fiap.hackaton.repositories.ReclamacaoRepository;
+import br.com.fiap.hackaton.models.Cliente;
+import br.com.fiap.hackaton.repositories.ClienteRepository;
 
 @RestController()
-@RequestMapping(path = "/reclamacao")
+@RequestMapping(path = "/cliente")
 @CrossOrigin(maxAge = 3600)
-public class ReclamacaoController {
+public class ClienteController {
 
 	@Autowired
-	private ReclamacaoRepository reclamacaoRepository;
+	private ClienteRepository clienteRepository;
 	
 	@GetMapping("/list")
-	public List<Reclamacao> getReclamacoes () {
-		return reclamacaoRepository.findAll();
+	public List<Cliente> getClientes () {
+		return clienteRepository.findAll();
 	}
 	
 	@GetMapping("/{id}")
-	public Reclamacao getReclamacaoById (@PathVariable Integer id) {
-		return reclamacaoRepository.findById(id).get();
+	public Cliente getClienteById (@PathVariable Integer id) {
+		return clienteRepository.findById(id).get();
 	}
 }

@@ -4,12 +4,18 @@ import java.util.Calendar;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name="reclamacao")
@@ -24,12 +30,19 @@ public class Reclamacao {
 	private String titulo;
 	private String origem;
 	private String status;
-	private String cliente;
+	
+	@JoinColumn(name="id_cliente")
+	@JsonManagedReference
+	@ManyToOne(fetch = FetchType.EAGER)
+	private Cliente cliente;
+	
+	@OneToMany(mappedBy="reclamacao")
 	private List<Atendimento> historico_atendimento;
 	
 	public Integer getId() {
 		return id;
 	}
+	
 	public void setId(Integer id) {
 		this.id = id;
 	}
@@ -45,6 +58,12 @@ public class Reclamacao {
 	public void setTitulo(String titulo) {
 		this.titulo = titulo;
 	}
+	public Cliente getCliente() {
+		return cliente;
+	}
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
 	public String getOrigem() {
 		return origem;
 	}
@@ -56,12 +75,6 @@ public class Reclamacao {
 	}
 	public void setStatus(String status) {
 		this.status = status;
-	}
-	public String getCliente() {
-		return cliente;
-	}
-	public void setCliente(String cliente) {
-		this.cliente = cliente;
 	}
 	public List<Atendimento> getHistorico_atendimento() {
 		return historico_atendimento;

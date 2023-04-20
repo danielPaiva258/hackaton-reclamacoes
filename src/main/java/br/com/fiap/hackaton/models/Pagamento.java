@@ -1,11 +1,26 @@
 package br.com.fiap.hackaton.models;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="pagamento")
 public class Pagamento {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	@OneToOne 
+	private Pedido pedido;
 	private Double valor;
 	private Double valor_frete;
 	private Double valor_parcela;
 	private Double forma_pagamento;
+	
 	private String status;
 	public Integer getId() {
 		return id;
