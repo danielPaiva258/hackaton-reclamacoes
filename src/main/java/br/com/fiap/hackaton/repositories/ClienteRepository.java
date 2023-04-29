@@ -8,6 +8,9 @@ import br.com.fiap.hackaton.models.Cliente;
 import java.util.List;
 
 public interface ClienteRepository extends JpaRepository<Cliente, Integer>{
-
-    List<Cliente> findAllByNome(String cliName);
+	
+	@Query(value = "SELECT * FROM cliente WHERE nome = ?1", nativeQuery = true)
+	public Cliente findByName(String nome);
+	
+    public List<Cliente> findAllByNome(String cliName);
 }
