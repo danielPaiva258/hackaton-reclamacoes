@@ -1,42 +1,16 @@
 package br.com.fiap.hackaton.models;
 
-import java.util.List;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.Table;
-
-@Entity
-@Table(name="produto")
 public class Produto {
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
-	private String nome;
-	private String valor;
-	@ManyToMany(mappedBy = "produtos")
-	private List<Pedido> pedidos;
+	private Integer id_produto;
 	
-	public Integer getId() {
-		return id;
+	public Produto (Integer id_produto) {
+		this.id_produto = id_produto;
 	}
-	public void setId(Integer id) {
-		this.id = id;
+	
+	public Integer getId_produto() {
+		return id_produto;
 	}
-	public String getNome() {
-		return nome;
-	}
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-	public String getValor() {
-		return valor;
-	}
-	public void setValor(String valor) {
-		this.valor = valor;
+	public void setId_produto(Integer id_produto) {
+		this.id_produto = id_produto;
 	}
 }

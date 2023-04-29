@@ -11,5 +11,8 @@ public interface PedidoRepository extends JpaRepository<Pedido, Integer>{
 
 	@Query(value = "SELECT * FROM pedido WHERE id_cliente = ?1", nativeQuery = true)
 	public List<Pedido> findByCliente(String id_cliente);
+	
+	@Query(value = "SELECT id_produto FROM produto_pedido WHERE id_pedido = ?1", nativeQuery = true)
+	public List<Integer> findProdutosPedido(Integer id_pedido);
 
 }

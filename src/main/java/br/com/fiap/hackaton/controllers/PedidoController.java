@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.fiap.hackaton.models.Pedido;
+import br.com.fiap.hackaton.models.Produto;
 import br.com.fiap.hackaton.repositories.PedidoRepository;
 
 @RestController()
@@ -23,9 +24,15 @@ public class PedidoController {
 	
 	@GetMapping("/list")
 	public List<Pedido> getPedidos () {
+		List<Pedido> pedidos = pedidoRepository.findAll();
+		for (Pedido pedido : pedidos) {
+			pedido.setProdutos(
+					pedidoRepository.findProdutosPedido(pedido.getId()).stream().map(produtoId -> new Produto(produtoId)).toList()
+					);
+		}
 		return pedidoRepository.findAll();
 	}
-	
+
 	@GetMapping("/{id}")
 	public Pedido getPedidoById (@PathVariable Integer id) {
 		return pedidoRepository.findById(id).get();
