@@ -1,0 +1,9 @@
+FROM mariadb:10.7.8
+
+ENV MARIADB_ROOT_PASSWORD=f0cusF14pdb4dm
+ENV MARIADB_DATABASE=focusdb
+ENV MARIADB_USER=focusdbuser
+ENV MARIADB_PASSWORD=f0cusF14pdb
+ADD ini.sql /docker-entrypoint-initdb.d
+
+EXPOSE 3306
