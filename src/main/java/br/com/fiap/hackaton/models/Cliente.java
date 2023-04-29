@@ -1,12 +1,9 @@
 package br.com.fiap.hackaton.models;
 
-import java.util.List;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -18,12 +15,6 @@ public class Cliente {
 	private Integer id;
 	private String nome;
 	private String endereco;
-	
-	@OneToMany(mappedBy="cliente")
-	private List<Pedido> pedidos;
-	
-	@OneToMany(mappedBy="cliente")
-	private List<Reclamacao> reclamacoes;
 	
 	public Integer getId() {
 		return id;
@@ -42,17 +33,5 @@ public class Cliente {
 	}
 	public void setEndereco(String endereco) {
 		this.endereco = endereco;
-	}
-	public List<Pedido> getPedidos() {
-		return pedidos;
-	}
-	public void setPedidos(List<Pedido> pedidos) {
-		this.pedidos = pedidos;
-	}
-	public List<Reclamacao> getReclamacoes() {
-		return reclamacoes;
-	}
-	public void setReclamacoes(List<Reclamacao> reclamacoes) {
-		this.reclamacoes = reclamacoes;
 	}
 }
