@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.fiap.hackaton.models.Pagamento;
@@ -28,5 +29,10 @@ public class PagamentoController {
 	@GetMapping("/{id}")
 	public Pagamento getPagamentoById (@PathVariable Integer id) {
 		return pagamentoRepository.findById(id).get();
+	}
+	
+	@GetMapping(params = "id_pedido")
+	public Pagamento getPagamentoByPedido (@RequestParam(value="id_pedido") String id_pedido) {
+		return pagamentoRepository.getPagamentoByPedido(id_pedido);
 	}
 }

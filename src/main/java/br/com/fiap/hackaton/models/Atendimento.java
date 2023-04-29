@@ -13,6 +13,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
 @Table(name="atendimento")
@@ -26,9 +27,10 @@ public class Atendimento {
 	private String descricao;
 	private String status;
 	
-	@ManyToOne
 	@JoinColumn(name="id_reclamacao")
+	@ManyToOne
 	@JsonBackReference
+	@JsonProperty
 	private Reclamacao reclamacao;
 	
 	public Integer getId() {

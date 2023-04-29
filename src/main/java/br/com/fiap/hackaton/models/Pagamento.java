@@ -14,7 +14,7 @@ public class Pagamento {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	@OneToOne 
+	@OneToOne
 	private Pedido pedido;
 	private Double valor;
 	private Double valor_frete;
