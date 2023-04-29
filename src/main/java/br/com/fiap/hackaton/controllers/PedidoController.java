@@ -21,25 +21,39 @@ public class PedidoController {
 
 	@Autowired
 	private PedidoRepository pedidoRepository;
-	
+
 	@GetMapping("/list")
-	public List<Pedido> getPedidos () {
+	public List<Pedido> getPedidos() {
 		List<Pedido> pedidos = pedidoRepository.findAll();
-		for (Pedido pedido : pedidos) {
-			pedido.setProdutos(
-					pedidoRepository.findProdutosPedido(pedido.getId()).stream().map(produtoId -> new Produto(produtoId)).toList()
-					);
-		}
-		return pedidoRepository.findAll();
+		pedidos = incluiProdutos(pedidos);
+		return pedidos;
 	}
 
 	@GetMapping("/{id}")
-	public Pedido getPedidoById (@PathVariable Integer id) {
-		return pedidoRepository.findById(id).get();
+	public Pedido getPedidoById(@PathVariable Integer id) {
+		Pedido pedido = pedidoRepository.findById(id).get();
+		pedido = incluiProdutos(pedido);
+		return pedido;
 	}
-	
+
 	@GetMapping(params = "id_cliente")
-	public List<Pedido> getPedidosByCliente (@RequestParam(value="id_cliente") String id_cliente) {
-		return pedidoRepository.findByCliente(id_cliente);
+	public List<Pedido> getPedidosByCliente(@RequestParam(value = "id_cliente") String id_cliente) {
+		List<Pedido> pedidos = pedidoRepository.findByCliente(id_cliente);
+		pedidos = incluiProdutos(pedidos);
+		return pedidos;
+	}
+
+	private List<Pedido> incluiProdutos(List<Pedido> pedidos) {
+		for (Pedido pedido : pedidos) {
+			pedido.setProdutos(pedidoRepository.findProdutosPedido(pedido.getId()).stream()
+					.map(produtoId -> new Produto(produtoId)).toList());
+		}
+		return pedidos;
+	}
+
+	private Pedido incluiProdutos(Pedido pedido) {
+		pedido.setProdutos(pedidoRepository.findProdutosPedido(pedido.getId()).stream()
+				.map(produtoId -> new Produto(produtoId)).toList());
+		return pedido;
 	}
 }
