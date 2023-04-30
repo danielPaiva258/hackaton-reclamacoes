@@ -1,7 +1,7 @@
 package br.com.fiap.hackaton;
 
-import br.com.fiap.hackaton.models.Cliente;
-import br.com.fiap.hackaton.repositories.ClienteRepository;
+import br.com.fiap.hackaton.models.Pagamento;
+import br.com.fiap.hackaton.repositories.PagamentoRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class HackatonApplicationTests {
 
 	@Autowired
-	private ClienteRepository clienteRepository;
+	private PagamentoRepository pagamentoRepository;
 
 
 	@Test
@@ -22,20 +22,32 @@ class HackatonApplicationTests {
 	}
 
 	@Test
-	void recupera_informacoes_de_clientes_por_id() {
-		Integer id = 1;
-		Cliente cli = clienteRepository.findById(id).get();
-		String cliName = "João da Silva";
-		assertEquals(cliName, cli.getNome());
+	void recupera_pagamento_por_id() {
+		Integer idPagamento = 1;
+		Double formaPagamento = 1.0;
+		String status = "Aguardando pagamento";
+		Double valor = 500.0;
+		Double valorFrete = 20.0;
+		Double valorParcela = 520.0;
+		Integer pedidoID  = 1;
+
+		Pagamento pagamento = pagamentoRepository.findById(idPagamento).get();
+
+		assertEquals(formaPagamento, pagamento.getForma_pagamento());
+		assertEquals(status, pagamento.getStatus());
+		assertEquals(valor, pagamento.getValor());
+		assertEquals(valorFrete, pagamento.getValor_frete());
+		assertEquals(valorParcela, pagamento.getValor_parcela());
+		assertEquals(pedidoID, pagamento.getPedido_id());
+
 	}
 
 	@Test
-	void recupera_informacoes_de_clientes_por_nome() {
-		Integer id = 1;
-		String cliName = "João da Silva";
-		List<Cliente> clients = clienteRepository.findAllByNome(cliName);
-		assertEquals(clients.size(), 1);
-		assertEquals(clients.get(0).getId(), 1);
+	void recupera_pagamentos_por_pedido() {
+		Integer idPedido = 1;
+		Integer qtPagamentos = 1;
+		List<Pagamento> pagamentos = pagamentoRepository.getPagamentosByPedido(idPedido);
+		assertEquals(pagamentos.size(), qtPagamentos);
 	}
 
 }

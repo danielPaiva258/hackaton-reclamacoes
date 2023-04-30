@@ -5,9 +5,11 @@ import org.springframework.data.jpa.repository.Query;
 
 import br.com.fiap.hackaton.models.Pagamento;
 
+import java.util.List;
+
 public interface PagamentoRepository extends JpaRepository<Pagamento, Integer>{
 
 	@Query(value = "SELECT * FROM pagamento WHERE pedido_id = ?1", nativeQuery = true)
-	public Pagamento getPagamentoByPedido(String id_pedido);
+	public List<Pagamento> getPagamentosByPedido(Integer pedido_id);
 
 }

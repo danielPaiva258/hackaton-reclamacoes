@@ -4,7 +4,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -14,8 +13,7 @@ public class Pagamento {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	@OneToOne
-	private Pedido pedido;
+	private Integer pedido_id;
 	private Double valor;
 	private Double valor_frete;
 	private Double valor_parcela;
@@ -58,4 +56,6 @@ public class Pagamento {
 	public void setStatus(String status) {
 		this.status = status;
 	}
+	public Integer getPedido_id() { return pedido_id;	}
+	public void setPedido_id(Integer pedido_id) { this.pedido_id = pedido_id; }
 }

@@ -32,7 +32,7 @@ public class PagamentoController {
 	}
 	
 	@GetMapping(params = "id_pedido")
-	public Pagamento getPagamentoByPedido (@RequestParam(value="id_pedido") String id_pedido) {
-		return pagamentoRepository.getPagamentoByPedido(id_pedido);
+	public List<Pagamento> getPagamentoByPedido (@RequestParam(value="id_pedido") Integer pedido_id) {
+		return pagamentoRepository.getPagamentosByPedido(pedido_id);
 	}
 }
