@@ -3,19 +3,8 @@ package br.com.fiap.hackaton.models;
 import java.util.Calendar;
 import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.*;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
@@ -33,14 +22,11 @@ public class Reclamacao {
 	private String origem;
 	private String status;
 	
-	@JoinColumn(name="id_cliente")
-	@ManyToOne
-	@JsonBackReference
-	@JsonProperty
-	private Cliente cliente;
+	@Column(name="id_cliente")
+	private Integer idCliente;
 	
-	@OneToMany(mappedBy="reclamacao")
-	private List<Atendimento> historico_atendimento;
+	@Transient
+	private List<AtendimentoDTO> historico_atendimento;
 	
 	public Integer getId() {
 		return id;
@@ -56,11 +42,11 @@ public class Reclamacao {
 	public void setTitulo(String titulo) {
 		this.titulo = titulo;
 	}
-	public Cliente getCliente() {
-		return cliente;
+	public Integer getIdCliente() {
+		return idCliente;
 	}
-	public void setCliente(Cliente cliente) {
-		this.cliente = cliente;
+	public void setIdCliente(Integer idCliente) {
+		this.idCliente = idCliente;
 	}
 	public String getOrigem() {
 		return origem;
@@ -74,10 +60,10 @@ public class Reclamacao {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	public List<Atendimento> getHistorico_atendimento() {
+	public List<AtendimentoDTO> getHistorico_atendimento() {
 		return historico_atendimento;
 	}
-	public void setHistorico_atendimento(List<Atendimento> historico_atendimento) {
+	public void setHistorico_atendimento(List<AtendimentoDTO> historico_atendimento) {
 		this.historico_atendimento = historico_atendimento;
 	}
 

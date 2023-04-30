@@ -1,12 +1,10 @@
 package br.com.fiap.hackaton;
 
-import br.com.fiap.hackaton.models.Cliente;
-import br.com.fiap.hackaton.repositories.ClienteRepository;
+import br.com.fiap.hackaton.models.Reclamacao;
+import br.com.fiap.hackaton.repositories.ReclamacaoRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -14,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class HackatonApplicationTests {
 
 	@Autowired
-	private ClienteRepository clienteRepository;
+	private ReclamacaoRepository reclamacaoRepository;
 
 
 	@Test
@@ -22,20 +20,20 @@ class HackatonApplicationTests {
 	}
 
 	@Test
-	void recupera_informacoes_de_clientes_por_id() {
+	void recupera_reclamacao_por_id() {
 		Integer id = 1;
-		Cliente cli = clienteRepository.findById(id).get();
-		String cliName = "João da Silva";
-		assertEquals(cliName, cli.getNome());
+		Reclamacao reclamacao = reclamacaoRepository.findById(id).get();
+		String origem = "Telefone";
+		String status = "Aberta";
+		String titulo = "Problema com a linhas";
+		Integer idCliente = 1;
+
+		assertEquals(origem, reclamacao.getOrigem());
+		assertEquals(status, reclamacao.getStatus());
+		assertEquals(titulo, reclamacao.getTitulo());
+		assertEquals(idCliente, reclamacao.getIdCliente());
+
 	}
 
-	@Test
-	void recupera_informacoes_de_clientes_por_nome() {
-		Integer id = 1;
-		String cliName = "João da Silva";
-		List<Cliente> clients = clienteRepository.findAllByNome(cliName);
-		assertEquals(clients.size(), 1);
-		assertEquals(clients.get(0).getId(), 1);
-	}
 
 }
