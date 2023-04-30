@@ -1,13 +1,7 @@
 package br.com.fiap.hackaton.models;
 
+import javax.persistence.*;
 import java.util.List;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.Table;
 
 @Entity
 @Table(name="produto")
@@ -18,9 +12,7 @@ public class Produto {
 	private Integer id;
 	private String nome;
 	private String valor;
-	@ManyToMany(mappedBy = "produtos")
-	private List<Pedido> pedidos;
-	
+
 	public Integer getId() {
 		return id;
 	}
@@ -39,4 +31,18 @@ public class Produto {
 	public void setValor(String valor) {
 		this.valor = valor;
 	}
+
+	/** TRANSIENTs  */
+
+	@Transient
+	private List<PedidoDTO> pedidos;
+
+	public List<PedidoDTO> getPedidos() {
+		return pedidos;
+	}
+
+	public void setPedidos(List<PedidoDTO> pedidos) {
+		this.pedidos = pedidos;
+	}
+
 }
