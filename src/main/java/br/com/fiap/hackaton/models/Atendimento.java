@@ -2,15 +2,7 @@ package br.com.fiap.hackaton.models;
 
 import java.util.Calendar;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -27,11 +19,8 @@ public class Atendimento {
 	private String descricao;
 	private String status;
 	
-	@JoinColumn(name="id_reclamacao")
-	@ManyToOne
-	@JsonBackReference
-	@JsonProperty
-	private Reclamacao reclamacao;
+	@Column(name="id_reclamacao")
+	private Integer reclamacao;
 	
 	public Integer getId() {
 		return id;
@@ -57,10 +46,10 @@ public class Atendimento {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	public Reclamacao getReclamacao() {
+	public Integer getReclamacao() {
 		return reclamacao;
 	}
-	public void setReclamacao(Reclamacao reclamacao) {
+	public void setReclamacao(Integer reclamacao) {
 		this.reclamacao = reclamacao;
 	}
 	
