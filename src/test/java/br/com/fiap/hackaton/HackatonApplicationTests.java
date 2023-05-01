@@ -25,7 +25,7 @@ class HackatonApplicationTests {
 		Reclamacao reclamacao = reclamacaoRepository.findById(id).get();
 		String origem = "Telefone";
 		String status = "Aberta";
-		String titulo = "Problema com a linhas";
+		String titulo = "Problema com a linha";
 		Integer idCliente = 1;
 
 		assertEquals(origem, reclamacao.getOrigem());
