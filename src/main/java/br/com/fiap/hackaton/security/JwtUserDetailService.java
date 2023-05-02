@@ -1,7 +1,7 @@
 package br.com.fiap.hackaton.security;
 
-import br.com.fiap.hackaton.security.models.Usuario;
-import br.com.fiap.hackaton.security.repository.UserRepository;
+import br.com.fiap.hackaton.models.Usuario;
+import br.com.fiap.hackaton.repository.UserRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;

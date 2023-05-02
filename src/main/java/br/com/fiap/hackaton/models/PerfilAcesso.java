@@ -1,4 +1,4 @@
-package br.com.fiap.hackaton.security.models;
+package br.com.fiap.hackaton.models;
 
 import org.springframework.security.core.GrantedAuthority;
 
@@ -10,10 +10,10 @@ import java.util.List;
 @Table
 public class PerfilAcesso implements GrantedAuthority {
 
-    public static String ACESSO_ADMINISTRADOR = "ADMIN";
-    public static String ACESSO_SUPERVISOR_ATENDIMENTO = "SUP-ATENDIMENTO";
-    public static String ACESSO_ATENDENTE = "ATENDENTE";
-    public static String ACESSO_CLIENTE = "CLIENTE";
+    public static String ROLE_ADMINISTRADOR = "ADMIN";
+    public static String ROLE_SUPERVISOR_ATENDIMENTO = "SUP-ATENDIMENTO";
+    public static String ROLE_ATENDENTE = "ATENDENTE";
+    public static String ROLE_CLIENTE = "CLIENTE";
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

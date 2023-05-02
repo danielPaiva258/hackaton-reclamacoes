@@ -1,4 +1,4 @@
-package br.com.fiap.hackaton.security.dto;
+package br.com.fiap.hackaton.dto;
 
 public class AuthDTO {
     private String username;

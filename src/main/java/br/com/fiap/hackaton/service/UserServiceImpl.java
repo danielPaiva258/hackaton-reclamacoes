@@ -1,12 +1,12 @@
-package br.com.fiap.hackaton.security.service;
+package br.com.fiap.hackaton.service;
 
+import br.com.fiap.hackaton.dto.AuthDTO;
+import br.com.fiap.hackaton.dto.JwtDTO;
+import br.com.fiap.hackaton.dto.UserCreateDTO;
+import br.com.fiap.hackaton.dto.UserDTO;
+import br.com.fiap.hackaton.models.Usuario;
+import br.com.fiap.hackaton.repository.UserRepository;
 import br.com.fiap.hackaton.security.JwtTokenUtil;
-import br.com.fiap.hackaton.security.dto.AuthDTO;
-import br.com.fiap.hackaton.security.dto.JwtDTO;
-import br.com.fiap.hackaton.security.dto.UserCreateDTO;
-import br.com.fiap.hackaton.security.dto.UserDTO;
-import br.com.fiap.hackaton.security.models.Usuario;
-import br.com.fiap.hackaton.security.repository.UserRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

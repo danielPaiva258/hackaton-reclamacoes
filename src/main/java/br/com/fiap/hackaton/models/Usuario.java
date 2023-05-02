@@ -1,4 +1,4 @@
-package br.com.fiap.hackaton.security.models;
+package br.com.fiap.hackaton.models;
 
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 

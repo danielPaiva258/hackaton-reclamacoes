@@ -1,4 +1,4 @@
-package br.com.fiap.hackaton.security.configuration;
+package br.com.fiap.hackaton.configuration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
