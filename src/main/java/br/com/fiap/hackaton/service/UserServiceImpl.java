@@ -22,6 +22,8 @@ public class UserServiceImpl implements UserService {
     private final PasswordEncoder passwordEncoder;
     private final UserRepository userRepository;
 
+
+
     public UserServiceImpl(JwtTokenUtil jwtTokenUtil,
                            AuthenticationManager authenticationManager,
                            PasswordEncoder passwordEncoder,
@@ -55,7 +57,10 @@ public class UserServiceImpl implements UserService {
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED,
                     e.getMessage());
         }
-        String token = jwtTokenUtil.generateToken(authDTO.getUsername());
+        Usuario usr = userRepository.findFirstByUsername(authDTO.getUsername())
+                .orElseThrow();
+
+        String token = jwtTokenUtil.generateToken(usr);
         JwtDTO jwtDTO = new JwtDTO();
         jwtDTO.setToken(token);
         return jwtDTO;

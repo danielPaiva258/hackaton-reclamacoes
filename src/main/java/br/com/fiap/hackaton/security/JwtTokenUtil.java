@@ -1,5 +1,6 @@
 package br.com.fiap.hackaton.security;
 
+import br.com.fiap.hackaton.models.Usuario;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -21,8 +22,10 @@ public class JwtTokenUtil {
     @Value("${jwt.expire}")
     private int expire;
 
-    public String generateToken(String username){
+    public String generateToken(Usuario usr){
         Map<String, Object> claims = new HashMap<>(); // Roles
+
+        claims.put("roles", usr.getPerfisAcesso().get(0).getAuthority());
         Date dataCriacao = getFromLocalDate(LocalDateTime.now());
         Date dataExpiracao =
                 getFromLocalDate(LocalDateTime.now().plusMinutes(expire));
@@ -30,7 +33,7 @@ public class JwtTokenUtil {
                 .setClaims(claims)
                 .setIssuedAt(dataCriacao)
                 .setExpiration(dataExpiracao)
-                .setSubject(username)
+                .setSubject(usr.getUsername())
                 .signWith(SignatureAlgorithm.HS512, secret)
                 .compact();
     }
@@ -44,5 +47,13 @@ public class JwtTokenUtil {
                 .parseClaimsJws(token.replace("Bearer ", ""))
                 .getBody();
         return claims.getSubject();
+    }
+
+    public Claims parseClaims(String token) {
+
+        return Jwts.parser()
+                .setSigningKey(secret)
+                .parseClaimsJws(token.replace("Bearer ", ""))
+                .getBody();
     }
 }

@@ -15,6 +15,10 @@ public class PerfilAcesso implements GrantedAuthority {
     public static String ROLE_ATENDENTE = "ATENDENTE";
     public static String ROLE_CLIENTE = "CLIENTE";
 
+    public PerfilAcesso(){}
+
+    public PerfilAcesso(String codigo){this.codigo = codigo; }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
