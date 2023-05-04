@@ -65,7 +65,7 @@ public class SecurityConfig  {
             .and()
                 .authorizeRequests()
                 .antMatchers("/users/login").permitAll()
-                .antMatchers("/users").hasRole(PerfilAcesso.ROLE_ADMINISTRADOR)
+                .antMatchers("/users").hasAuthority(PerfilAcesso.ROLE_ADMINISTRADOR)
                 .anyRequest().authenticated()
             .and()
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)

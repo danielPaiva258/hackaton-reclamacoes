@@ -5,11 +5,14 @@ import br.com.fiap.hackaton.models.PerfilAcesso;
 import java.sql.Date;
 import java.util.List;
 
-public class UserDTO {
+public class UserCreatedDTO {
     private Integer id;
     private String username;
 
     private Date dtDesativado;
+
+    List<String> perfilAcessoList;
+
 
     public Integer getId() {
         return id;
@@ -35,4 +38,7 @@ public class UserDTO {
         this.dtDesativado = dtDesativado;
     }
 
+    public List<String> getPerfilAcessoList() { return perfilAcessoList; }
+
+    public void setPerfilAcessoList(List<String> perfilAcessoList) { this.perfilAcessoList = perfilAcessoList; }
 }
