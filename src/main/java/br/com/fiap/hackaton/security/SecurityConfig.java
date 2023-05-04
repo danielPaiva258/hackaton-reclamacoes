@@ -66,8 +66,6 @@ public class SecurityConfig  {
                 .authorizeRequests()
                 .antMatchers("/users/login").permitAll()
                 .antMatchers("/users").hasRole(PerfilAcesso.ROLE_ADMINISTRADOR)
-                .antMatchers("/reclamacao/list").hasAuthority(PerfilAcesso.ROLE_ATENDENTE)
-                .antMatchers("/pedido/**").hasRole(PerfilAcesso.ROLE_ATENDENTE)
                 .anyRequest().authenticated()
             .and()
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
@@ -80,6 +78,7 @@ public class SecurityConfig  {
 
         return http.build();
     }
+
 
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {

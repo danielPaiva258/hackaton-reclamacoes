@@ -1,10 +1,12 @@
 package br.com.fiap.hackaton;
 
-import br.com.fiap.hackaton.models.Reclamacao;
-import br.com.fiap.hackaton.repositories.ReclamacaoRepository;
+import br.com.fiap.hackaton.models.Usuario;
+import br.com.fiap.hackaton.repository.UserRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+
+import java.sql.Date;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -12,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class HackatonApplicationTests {
 
 	@Autowired
-	private ReclamacaoRepository reclamacaoRepository;
+	private UserRepository userRepository;
 
 
 	@Test
@@ -20,18 +22,19 @@ class HackatonApplicationTests {
 	}
 
 	@Test
-	void recupera_reclamacao_por_id() {
-		Integer id = 1;
-		Reclamacao reclamacao = reclamacaoRepository.findById(id).get();
-		String origem = "Telefone";
-		String status = "Aberta";
-		String titulo = "Problema com a linha";
-		Integer idCliente = 1;
+	void recupera_usuario_por_nome() {
+		String nome = "cliente";
+		Usuario usuario = userRepository.findFirstByUsername(nome)
+				.orElseThrow();
+		Integer id = 4;
+		String password = "$2a$10$ehbYL0UV4xOyslw91Gq06.0UjfKaLRr22tYOFBMto7tpJ8rZjI3f.";
+		Date dt_desativado = null;
 
-		assertEquals(origem, reclamacao.getOrigem());
-		assertEquals(status, reclamacao.getStatus());
-		assertEquals(titulo, reclamacao.getTitulo());
-		assertEquals(idCliente, reclamacao.getIdCliente());
+
+		assertEquals(id, usuario.getId());
+		assertEquals(nome, usuario.getUsername());
+		assertEquals(password, usuario.getPassword());
+		assertEquals(dt_desativado, usuario.getDtDesativado());
 
 	}
 
