@@ -1,16 +1,18 @@
 package br.com.fiap.hackaton;
 
-import br.com.fiap.hackaton.models.Pedido;
-import br.com.fiap.hackaton.repositories.PedidoRepository;
-import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-
-import java.sql.Date;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
+
+import br.com.fiap.hackaton.models.Pedido;
+import br.com.fiap.hackaton.repositories.PedidoRepository;
+
 @SpringBootTest
+@ActiveProfiles("test")
 class HackatonApplicationTests {
 
     @Autowired
